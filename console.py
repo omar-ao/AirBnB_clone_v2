@@ -147,10 +147,6 @@ class HBNBCommand(cmd.Cmd):
                 else:
                     value = int(value)
                 params[key] = value
-            print('=============================================')
-            print(params)
-            print('=============================================')
-
             obj = HBNBCommand.classes[_class](**params)
             #TODO: save params
             obj.save()
