@@ -147,9 +147,13 @@ class HBNBCommand(cmd.Cmd):
                 else:
                     value = int(value)
                 params[key] = value
-            obj = HBNBCommand.classes[_class](params)
+            print('=============================================')
+            print(params)
+            print('=============================================')
+
+            obj = HBNBCommand.classes[_class](**params)
             #TODO: save params
-            storage.save()
+            obj.save()
             print(obj.id)
             return
 
