@@ -8,6 +8,7 @@ from sqlalchemy.orm import declarative_base
 
 Base = declarative_base()
 
+
 class BaseModel:
     """A base class for all hbnb models"""
     id = Column('id', String(60), unique=True, nullable=False,
@@ -16,6 +17,7 @@ class BaseModel:
                         default=datetime.utcnow())
     updated_at = Column('updated_at', DateTime(), nullable=False,
                         default=datetime.utcnow())
+
     def __init__(self, *args, **kwargs):
         """Instatntiates a new model"""
         if not kwargs:
@@ -27,19 +29,19 @@ class BaseModel:
             if 'id' not in keys:
                 kwargs['id'] = str(uuid.uuid4())
             if 'created_at' in keys:
-                kwargs['updated_at'] = datetime.strptime(kwargs['updated_at'],
-                                                     '%Y-%m-%dT%H:%M:%S.%f')
+                kwargs['updated_at'] = datetime.strptime(
+                    kwargs['updated_at'], '%Y-%m-%dT%H:%M:%S.%f')
             else:
                 kwargs['created_at'] = datetime.now()
 
             if 'updated_at' in keys:
-                kwargs['created_at'] = datetime.strptime(kwargs['created_at'],
-                                                     '%Y-%m-%dT%H:%M:%S.%f')
+                kwargs['created_at'] = datetime.strptime(
+                    kwargs['created_at'], '%Y-%m-%dT%H:%M:%S.%f')
             else:
                 kwargs['updated_at'] = datetime.now()
             if '__class__' in keys:
                 del kwargs['__class__']
-            
+
             self.__dict__.update(kwargs)
 
     def __str__(self):
