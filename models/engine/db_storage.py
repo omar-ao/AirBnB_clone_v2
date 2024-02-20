@@ -11,6 +11,7 @@ from models.place import Place
 from models.state import State
 from models.review import Review
 
+
 class DBStorage:
     """This class manages storage of hbnb models in database"""
     __engine = None
@@ -24,8 +25,9 @@ class DBStorage:
         database = getenv('HBNB_MYSQL_DB')
         env = getenv('HBNB_ENV')
 
-        self.__engine = create_engine('mysql+mysqldb://{}:{}@{}:3306/{}'.format(
-                    user, password, host, database), pool_pre_ping=True)
+        self.__engine = create_engine('mysql+mysqldb://{}:{}@{}:3306/{}'
+                                      .format(user, password, host, database),
+                                      pool_pre_ping=True)
 
         if env == 'test':
             Base.metadata.reflect(bind=self.__engine)
@@ -34,7 +36,7 @@ class DBStorage:
     def all(self, cls=None):
         """query the session and return a dictionary of all objs"""
         classes = {'User': User, 'State': State, 'City': City,
-                   'Amenity': Amenity, 'Place': Place,'Review': Review}
+                   'Amenity': Amenity, 'Place': Place, 'Review': Review}
         objs = {}
         if cls is None:
             for key in classes:
@@ -61,7 +63,7 @@ class DBStorage:
         if obj is not None:
             self.__session.delete(obj)
             self.save()
-    
+
     def reload(self):
         """creates all tables and session"""
         Base.metadata.create_all(self.__engine)
