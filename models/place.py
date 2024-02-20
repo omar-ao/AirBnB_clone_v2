@@ -23,3 +23,6 @@ class Place(BaseModel):
     latitude = Column('latitude', Float)
     longitude = Column('longtitude', Float)
     amenity_ids = []
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
