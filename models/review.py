@@ -13,4 +13,3 @@ class Review(BaseModel):
                       nullable=False)
     user_id = Column('user_id', String(60), ForeignKey('users.id'),
                      nullable=False)
-    
