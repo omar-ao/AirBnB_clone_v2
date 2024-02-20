@@ -117,7 +117,9 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, args):
         """ Create an object of any class"""
-
+        if not args:
+            print("** class name missing **")
+            return
         pattern = r'(\w+)\s*=\s*(".*?"|-?\d+\.\d+|-?\d+)'
         match = re.match(r'(\w+)\s+(.*)', args)
 
@@ -130,10 +132,10 @@ class HBNBCommand(cmd.Cmd):
             if _class not in HBNBCommand.classes:
                 print("** class doesn't exist **")
                 return
-
-        if not args:
-            print("** class name missing **")
-            return
+        else:
+            if args not in HBNBCommand.classes:
+                print("** class doesn't exist **")
+                return
 
         if params:
             param_dict = re.findall(pattern, params)

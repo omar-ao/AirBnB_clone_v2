@@ -11,7 +11,7 @@ class City(BaseModel, Base):
     __tablename__ = 'cities'
     name = Column('name', String(128), nullable=False)
     state_id = Column('state_id', String(60), ForeignKey('states.id'),
-                      nullable=False, default='___')
+                      nullable=False)
     places = relationship('Place', backref='city',
                           cascade='all, delete, delete-orphan')
 

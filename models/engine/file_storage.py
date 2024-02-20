@@ -14,7 +14,7 @@ class FileStorage:
             return FileStorage.__objects
         objs = {}
         for key in FileStorage.__objects.keys():
-            if cls.__name__ in key:
+            if cls in key:
                 objs[key] = FileStorage.__objects[key]
         return objs
 
