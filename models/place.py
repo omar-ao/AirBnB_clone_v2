@@ -22,7 +22,7 @@ class Place(BaseModel, Base):
     price_by_night = Column('price_by_night', Integer, nullable=False,
                             default=0)
     latitude = Column('latitude', Float)
-    longitude = Column('longtitude', Float)
+    longitude = Column('longitude', Float)
 
     if getenv('HBNB_TYPE_STORAGE') == 'db':
         reviews = relationship('Review', backref='place',
